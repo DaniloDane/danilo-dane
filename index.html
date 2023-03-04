@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Advanced CSS - Assignment 1</title>
     <style>
-    /* Obojiti tekst svih linkova koji upućuju na neku od adresa koje pripadaju sajtu Google u zeleno */
+        /* Obojiti tekst svih linkova koji upućuju na neku od adresa koje pripadaju sajtu Google u zeleno */
         a[href^="https://www.google"] {
             color: green;
         }
@@ -16,29 +15,27 @@
         }
 
         /* Paragrafe unutar second-div elementa naizmenično obojiti u crvenu i plavu boju */
-        #second-div p:nth-child(odd) {
+        #second-div > p:nth-child(odd) {
             color: red;
         }
 
-        #second-div p:nth-child(even) {
+        #second-div > p:nth-child(even) {
             color: blue;
         }
 
         /* Dodati tekst "NEW" u žutoj boji na krajeve Paragrafa 2 i Paragrafa 3 */
-        #first-div p:nth-child(2):after,
-        #first-div p:nth-child(3):after {
+        #first-div > p:nth-child(2):after,
+        #first-div > p:nth-child(3):after {
             content: " NEW";
             color: yellow;
         }
 
         /* Promeniti stil teksta Paragraph 10 elementa kada se pređe mišem preko njega */
-        #second-div p:nth-child(7):hover {
+        #second-div > p:nth-child(7):hover {
             font-style: italic;
         }
-
     </style>
 </head>
-
 <body>
     <h1>Main Heading</h1>
     <p>Paragraph 1</p>
@@ -61,5 +58,4 @@
     <p>Paragraph 9</p>
     <p>Paragraph 10</p>
 </body>
-
 </html>
