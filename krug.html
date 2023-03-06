@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Animacija kruga</title>
+	<style>
+		body {
+			background-color: #050210;
+		}
+
+    .outer-circle {
+    width: 165px;
+    height: 165px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 12px solid #fb5dad;
+    animation: outer-rotate 2s linear infinite;
+    z-index: -1;
+  }
+  .outer-circle {
+    /* ostali stilovi */
+    box-shadow: 0 0 50px #fb5dad, 0 0 50px #55fb9f, 0 0 50px #b97aff;
+  }
+		.inner-circle {
+			width: 150px;
+			height: 150px;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			border-radius: 50%;
+			background-color: #000;
+			z-index: 1;
+		}
+
+    @keyframes outer-rotate {
+    0% {
+      border-color: #fb5dad;
+    }
+    25% {
+      border-color: #55fb9f;
+    }
+    50% {
+      border-color: #b97aff;
+    }
+    75% {
+      border-color: #fb5dad;
+    }
+    100% {
+      border-color: #fb5dad;
+    }
+  }
+
+  .outer-circle:nth-child(2) {
+    border-color: #55fb9f;
+    animation-delay: -1.5s;
+  }
+
+  .outer-circle:nth-child(3) {
+    border-color: #b97aff;
+    animation-delay: -1s;
+  }
+	</style>
+</head>
+<body>
+	<div class="outer-circle"></div>
+	<div class="inner-circle"></div>
+</body>
+</html>
