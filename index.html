@@ -1,21 +1,110 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <title>Moj web sajt</title>
-    <!-- Linkujemo Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  </head>
-  <body>
-    <h1>Dobrodošli na moj web sajt!</h1>
-    <img src="mockup-xl.jpg" alt="XL Image" class="img-fluid d-none d-xl-block">
-    <img src="mockup-md.jpg" alt="MD Image" class="img-fluid d-none d-md-block d-xl-none">
-    <img src="mockup-sm.jpg" alt="SM Image" class="img-fluid d-block d-md-none">
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 - Website Building</title>
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
 
+    #login-container {
+      width: 460px;
+      margin: 0 auto;
+    }
 
-    <!-- Linkujemo jQuery i Bootstrap JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  </body>
+    form label,
+    form input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    form input {
+      padding: 8px;
+    }
+
+    /* CSS za označavanje nevalidnih polja */
+    .invalid {
+      border: 2px solid red;
+    }
+
+    .invalid-icon {
+      color: red;
+    }
+
+    /* CSS za označavanje validnih polja */
+    .valid {
+      border: 2px solid green;
+    }
+
+    .valid-icon {
+      color: green;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="login-container">
+    <form>
+      <label for="username-input">Korisničko ime:</label>
+      <input type="text" id="username-input" name="username">
+      <label for="password-input">Lozinka:</label>
+      <input type="password" id="password-input" name="password">
+      <button type="submit">Prijavi se</button>
+    </form>
+    <div id="error-message"></div>
+    <div id="success-message"></div>
+  </div>
+
+  <script>
+    const form = document.querySelector('form');
+    const usernameInput = document.querySelector('#username-input');
+    const passwordInput = document.querySelector('#password-input');
+    const errorMessage = document.querySelector('#error-message');
+    const successMessage = document.querySelector('#success-message');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Preuzimanje vrednosti iz polja
+      const usernameValue = usernameInput.value.trim();
+      const passwordValue = passwordInput.value.trim();
+
+      // Provera unosa korisničkog imena i lozinke
+      let errors = [];
+      if (usernameValue !== 'new_user') {
+        errors.push('Neispravno korisničko ime');
+        usernameInput.classList.add('invalid');
+        usernameInput.insertAdjacentHTML('afterend', '<span class="invalid-icon">X</span>');
+      } else {
+        usernameInput.classList.remove('invalid');
+        usernameInput.classList.add('valid');
+        usernameInput.insertAdjacentHTML('afterend', '<span class="valid-icon">✓</span>');
+      }
+
+      if (passwordValue !== '123456789') {
+        errors.push('Neispravna lozinka');
+        passwordInput.classList.add('invalid');
+        passwordInput.insertAdjacentHTML('afterend', '<span class="invalid-icon">X</span>');
+      } else {
+        passwordInput.classList.remove('invalid');
+        passwordInput.classList.add('valid');
+        passwordInput.insertAdjacentHTML('afterend', '<span class="valid-icon">✓</span>');
+      }
+
+      // Ispisivanje grešaka, ako postoje
+      if (errors.length > 0) {
+        errorMessage.innerHTML = errors.join('<br>');
+        successMessage.innerHTML = '';
+      } else {
+        errorMessage.innerHTML = '';
+        successMessage.innerHTML = 'Successful login!';
+      }
+    });
+  </script>
+</body>
+
 </html>
